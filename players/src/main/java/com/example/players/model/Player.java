@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Players {
+public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,10 @@ public class Players {
     private int weight;
     private int jump;
 
-    public Players() {
+    public Player() {
     }
 
-    public Players(String firstName, String lastName, String club, String position, int height, int weight, int jump) {
+    public Player(String firstName, String lastName, String club, String position, int height, int weight, int jump) {
 
         this.firstName = firstName;
         this.lastName = lastName;
