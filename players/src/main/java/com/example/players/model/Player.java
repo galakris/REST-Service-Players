@@ -1,9 +1,8 @@
 package com.example.players.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
 
 @Entity
 public class Player {
@@ -13,24 +12,45 @@ public class Player {
     private Long id;
     private String firstName;
     private String lastName;
-    private String club;
     private String position;
     private int height;
     private int weight;
     private int jump;
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    @JsonManagedReference
+    private Team team;
+
 
     public Player() {
     }
 
-    public Player(String firstName, String lastName, String club, String position, int height, int weight, int jump) {
+    public Player(String firstName, String lastName, String position, int height, int weight, int jump) {
 
         this.firstName = firstName;
         this.lastName = lastName;
-        this.club = club;
         this.position = position;
         this.height = height;
         this.weight = weight;
         this.jump = jump;
+    }
+
+    public Player(String firstName, String lastName, String position, int height, int weight, int jump, Team team) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.position = position;
+        this.height = height;
+        this.weight = weight;
+        this.jump = jump;
+        this.team = team;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public Long getId() {
@@ -55,14 +75,6 @@ public class Player {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getClub() {
-        return club;
-    }
-
-    public void setClub(String club) {
-        this.club = club;
     }
 
     public String getPosition() {
