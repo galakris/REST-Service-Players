@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Players</title>
+</head>
+<body ng-controller="PlayerController as playControl">
+<h1>{{playControl.appName}}</h1>
+<form>
+    <input type="text" ng-model="playControl.player.firstName" placeholder="Imie"><br>
+    <input type="text" ng-model="playControl.player.lastName" placeholder="Nazwisko"><br>
+    <input type="text" ng-model="playControl.player.position" placeholder="Pozycja"><br>
+    <input type="number" ng-model="playControl.player.height" placeholder="Wzorst"><br>
+    <input type="number" ng-model="playControl.player.weight" placeholder="Waga"><br>
+    <input type="number" ng-model="playControl.player.jump" placeholder="Zasięg"><br>
+    <button ng-click="playControl.addPlayer(playControl.player)">Dodaj zawodnika</button>
+</form>
+
+<ul>
+    <li ng-repeat="player in playControl.players">
+        {{player.firstName}} - {{player.lastName}} {{player.position}} {{player.height}} {{player.weight}} {{player.jump}}
+    </li>
+</ul>
+<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>

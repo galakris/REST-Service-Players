@@ -1,5 +1,6 @@
 package com.example.players.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class Player {
     @ManyToOne
     @JoinColumn(name = "team_id")
     @JsonManagedReference
+    @JsonIgnore
     private Team team;
 
 
@@ -42,14 +44,6 @@ public class Player {
         this.height = height;
         this.weight = weight;
         this.jump = jump;
-        this.team = team;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
         this.team = team;
     }
 
@@ -107,5 +101,13 @@ public class Player {
 
     public void setJump(int jump) {
         this.jump = jump;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

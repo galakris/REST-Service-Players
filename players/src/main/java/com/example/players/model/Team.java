@@ -1,6 +1,7 @@
 package com.example.players.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,7 +13,7 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String coutry;
+    private String country;
     @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
     @JsonBackReference
     private List<Player> players;
@@ -20,9 +21,17 @@ public class Team {
     public Team() {
     }
 
-    public Team(String name, String coutry) {
+    public Team(String name, String country) {
         this.name = name;
-        this.coutry = coutry;
+        this.country = country;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -33,12 +42,12 @@ public class Team {
         this.name = name;
     }
 
-    public String getCoutry() {
-        return coutry;
+    public String getCountry() {
+        return country;
     }
 
-    public void setCoutry(String coutry) {
-        this.coutry = coutry;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public List<Player> getPlayers() {
